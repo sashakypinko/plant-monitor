@@ -6,10 +6,10 @@
 
 // ПОДКЛЮЧЕНИЕ ДАТЧИКОВ
 #define ONE_WIRE_BUS 8
-#define MOISTURE_PIN A0 
-#define LIGHT_SENSOR A1  
-#define HEATER_PIN 3 
-#define PUMP_PIN 4     
+#define MOISTURE_PIN A0
+#define LIGHT_SENSOR A1
+#define HEATER_PIN 3
+#define PUMP_PIN 4
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature ds18b20(&oneWire);
@@ -48,7 +48,7 @@ void loop() {
     light = map(light, 0, 1023, 0, 100);
 
     Serial.print("[");
-      
+
     for(int i = 0; i < 10; i++) {
       Serial.print("{\"id\":");
       Serial.print(i);
@@ -71,7 +71,7 @@ void loop() {
       }
     }
     Serial.println("]");
-   
+
     if (Serial.available()) {
         String command = Serial.readStringUntil('\n');
         command.trim();
