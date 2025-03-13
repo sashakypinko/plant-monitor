@@ -1,19 +1,19 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('path');
 
 let mainWindow;
 
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 700,
+    width: 1024,
+    height: 600,
+    fullscreen: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
     }
   });
 
-  mainWindow.loadURL('http://localhost:3000');
+  mainWindow.loadURL('file:///home/alex/projects/plant-monitor/client/build/index.html');
 });
 
 app.on('window-all-closed', () => {

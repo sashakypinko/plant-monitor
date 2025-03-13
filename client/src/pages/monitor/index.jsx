@@ -6,19 +6,23 @@ import {SensorDataContext} from "../../App";
 
 const MonitorPage = () => {
   const { id } = useParams();
-  const { data } = useContext(SensorDataContext);
+  const { sensorsData, monitorSettings } = useContext(SensorDataContext);
 
-  const sensorData = useMemo(() => {
-    return id ? data.find((item) => item.id === parseInt(id)) : null;
-  }, [id, data]);
+  const data = useMemo(() => {
+    return id ? sensorsData.find((item) => item.id === parseInt(id)) : null;
+  }, [id, sensorsData]);
 
-  if (!sensorData) {
+  const settings = useMemo(() => {
+    return id ? monitorSettings.find((item) => item.monitorIndex === parseInt(id)) : null;
+  }, [id, monitorSettings]);
+
+  if (!data || !settings) {
     return null;
   }
 
   return (
     <Container maxWidth="xl">
-      <Monitor data={sensorData}/>
+      <Monitor data={data} settings={settings}/>
     </Container>
   );
 };
